@@ -52,8 +52,9 @@ Your assessment will be evaluated based on the following criteria:
 ## Bonus Points (Optional)
 
 Consider these optional enhancements to earn bonus points:
-- Deploy the application on a live server
-
+- Deploy the application to a live server
+- Use of a logging framework
+- Use of Docker
 
 ## Questions and Assistance
 
