@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-assessment",
+  "version": "1.0.0",
+  "description": "Node.js technical assessment for Nugo backend developer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "nugo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
