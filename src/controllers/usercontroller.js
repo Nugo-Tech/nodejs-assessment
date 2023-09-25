@@ -31,3 +31,20 @@ const addUser = asyncHandler(async(req,res)=> {
     })
     res.json(201).json(user)
 })
+
+const getUser = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      const user = await User.findById(id);
+      if (!user) {
+        res.status(404);
+        throw new Error("Not found");
+      }
+      res.status(200).json(user);
+    }
+  });
+
+  module.exports ={
+    addUser,
+    getUser
+  }
