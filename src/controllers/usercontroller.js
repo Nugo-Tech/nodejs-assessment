@@ -29,7 +29,7 @@ const addUser = asyncHandler(async(req,res)=> {
         city,
         country
     })
-    res.json(201).json(user)
+    res.json(201).json({user, message:"User created Success fully"})
 })
 
 const getUser = asyncHandler(async (req, res) => {
@@ -44,7 +44,44 @@ const getUser = asyncHandler(async (req, res) => {
     }
   });
 
+const updateUser= asyncHandler(async(req,res)=>{
+    const validate = [
+        body('name').notEmpty().withMessage("Name is required"),
+        body('email')
+            .notEmpty()
+            .withMessage('Email is required')
+            .isEmail()
+            .withMessage('Invalid email address'),
+        body('address').notEmpty().withMessage("Address is required"),
+        body('city').notEmpty().withMessage('City is required'),
+        body('country').notEmpty().withMessage('Country is required')
+    ]
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()})
+    }
+
+    const id = req.params.id
+
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+
+    const user = await User.findById(id);
+    if(!user){
+        res.status(404).json({message:"Not Found "})
+    }
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {new:true}
+    )
+    res.status.json({message:"User updated successfully"})
+})
+
+
   module.exports ={
     addUser,
-    getUser
+    getUser,
+    updateUser
   }
