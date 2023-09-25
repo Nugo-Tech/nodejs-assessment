@@ -5,9 +5,10 @@ const dotenv = require('dotenv').config()
 connectDB()
 
 const app = express()
-
 const port = 5000
+
 app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 app.listen(port, () => {
   console.log(`Server is up on port ` + port)
