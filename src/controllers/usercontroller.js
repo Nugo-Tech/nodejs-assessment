@@ -79,9 +79,21 @@ const updateUser= asyncHandler(async(req,res)=>{
     res.status.json({message:"User updated successfully"})
 })
 
+const deleteUser = asyncHandler(async(req,res)=>{
+    const id = req.params.id
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+        const user = await User.findById(id)
+        if(!user){
+            res.status(404).json({message:"No user found"})
+        }
+        await User.deleteOne()
+        res.status(200).json({user , message:"User deleted successfully"})
+    }
 
+})
   module.exports ={
     addUser,
     getUser,
-    updateUser
+    updateUser,
+    deleteUser
   }
