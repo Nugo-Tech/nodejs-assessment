@@ -205,7 +205,7 @@ Before running the application, make sure you have the following prerequisites i
 
    - create database and the table as schema.sql file
     
-    
+    ```
      CREATE TABLE users (
      id INT AUTO_INCREMENT PRIMARY KEY,
      name VARCHAR(255) NOT NULL,
