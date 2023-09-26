@@ -1,63 +1,115 @@
-# Node.js CRUD Application Assessment
+# API End Points
 
-Welcome to the Node.js CRUD Application Assessment. This assessment is designed to evaluate your skills in creating a basic CRUD (Create, Read, Update, Delete) application using Node.js, Express.js, and a database of your choice. Follow the steps below to complete the assessment, and good luck!
+## Running the Application
 
-## Objective
+To run the application, use the following commands:
 
-Your task is to build a simple CRUD API for managing user records. This includes creating users, updating user information, reading user details, and deleting users from the system.
+```bash
+npm i
+nodemon index.js
+Running Tests
+To run the tests, use the following commands:
 
-## Steps to Complete the Assessment
+bash
+Copy code
+npm i
+npm test
 
-1. **Fork this Repository:** Start by forking this GitHub repository to your own account. You will work on your assessment within your forked repository.
+##ADD User API
+Add User Method : POST
+Route: /api/users
 
-2. **Setup the Project:**
-   - Clone your forked repository to your local machine.
-   - Install the necessary dependencies.
+Results of Unit Test on Add User POST Users Api
+Validation Errors: []
 
-3. **Database Setup:**
-   - Choose a database for storing user records (e.g., Firebase, MongoDB, MySQL, PostgreSQL, or whatever you prefer!). Try to include instructions on how to set up and configure the database.
+It Should Post a new User (303ms)
+Request Format:
 
-4. **API Development:**
-   - Create RESTful API endpoints to perform the following operations:
-     - Create a new user with the required fields - id, name, email, address, city, country.
-     - Read user details by user ID.
-     - Update user information by user ID.
-     - Delete a user by user ID.
+json
+Copy code
+{
+  "name": "John",
+  "email": "Bala@gmail.com",
+  "address": "Sivan Street",
+  "city": "Trinco-Col",
+  "country": "USA"
+}
+Response formats:
 
-5. **Validation and Error Handling:**
-   - Implement input validation to ensure data integrity.
-   - Handle errors gracefully and provide informative error messages in the API responses.
+json
+Copy code
+{
+  "user": {
+    "name": "John",
+    "email": "Bala@gmail.com",
+    "address": "Sivan Street",
+    "city": "Trinco-Col",
+    "country": "USA",
+    "_id": "61212312adf12312",
+    "createdAt": "2023-09-26T15:24:30.724Z",
+    "updatedAt": "2023-09-26T15:24:30.724Z",
+    "__v": 0
+  },
+  "message": "User created successfully"
+}
 
-6. **Testing:**
-   - Write unit tests for your API endpoints. Consider using a testing framework like Mocha.
+##GET Single User API
+Get Single User Method : GET
+Route: /api/users/:id
 
-7. **Documentation:**
-   - Document your API endpoints, including the request and response formats, in this README.md file.
-   - Include instructions on how to run the application and tests.
+Results of Unit Test on GET Single User GET Users Api
 
-8. **Submission:**
-   - Commit your code to your forked repository.
-   - Push the changes to your GitHub repository.
-   - Create a Pull Request from your forked repository to this main repository.
+Should return a single user by ID (4307ms)
 
-## Evaluation Criteria
+##UPDATE User API
+Update Single User Method : PUT
+Route: /api/users/:id
 
-Your assessment will be evaluated based on the following criteria:
-- Correctness of CRUD operations.
-- Proper API design and RESTful practices.
-- Use of atomic commits and meaningful commit messages.
-- Quality of code and unit tests.
-- Code readability and organization, including proper use of comments.
+Request Format:
 
-## Bonus Points (Optional)
+json
+Copy code
+{
+  "name": "John",
+  "email": "Bala@gmail.com",
+  "address": "Sivan Street",
+  "city": "Trinco-Col",
+  "country": "USA"
+}
+Response formats:
 
-Consider these optional enhancements to earn bonus points:
-- Deploy the application to a live server
-- Use of a logging framework
-- Use of Docker
+json
+Copy code
+{
+  "updatedUser": {
+    "_id": "6512asdasdasdd",
+    "name": "NithushanUpdatedasdasdd",
+    "email": "Nithu@gmail.com",
+    "address": "Sivan Street",
+    "city": "asd",
+    "country": "Sri Lanka",
+    "createdAt": "2023-09-26T15:29:14.121Z",
+    "updatedAt": "2023-09-26T15:29:48.100Z",
+    "__v": 0
+  },
+  "message": "User updated successfully"
+}
+Results of Unit Test on Update User PUT Users Api
+Validation Errors: []
 
-## Questions and Assistance
+It Should Put an updating User (517ms)
 
-If you have any questions or need assistance at any stage of this assessment, please feel free to reach out to info@nugo.lk.
+##DELETE User API
+Delete User Method : DELETE
+Route: /api/users/:id
 
-Best of luck with your assessment!
+Response Format:
+
+json
+Copy code
+{
+  "message": "User deleted successfully"
+}
+Results of Unit Test on DELETE User DELETE Users Api
+
+Should delete a single user by ID (516ms)
