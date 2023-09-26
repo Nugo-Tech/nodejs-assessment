@@ -14,6 +14,8 @@ bash
 Copy code
 npm i
 npm test
+
+##ADD User API
 Add User Method : POST
 Route: /api/users
 
@@ -50,12 +52,16 @@ Copy code
   },
   "message": "User created successfully"
 }
+
+##GET Single User API
 Get Single User Method : GET
 Route: /api/users/:id
 
 Results of Unit Test on GET Single User GET Users Api
 
 Should return a single user by ID (4307ms)
+
+##UPDATE User API
 Update Single User Method : PUT
 Route: /api/users/:id
 
@@ -76,7 +82,7 @@ json
 Copy code
 {
   "updatedUser": {
-    "_id": "6512asdasasdasdasd",
+    "_id": "6512asdasdasdd",
     "name": "NithushanUpdatedasdasdd",
     "email": "Nithu@gmail.com",
     "address": "Sivan Street",
@@ -92,6 +98,8 @@ Results of Unit Test on Update User PUT Users Api
 Validation Errors: []
 
 It Should Put an updating User (517ms)
+
+##DELETE User API
 Delete User Method : DELETE
 Route: /api/users/:id
 
