@@ -12,6 +12,7 @@ const addUser =(async (req, res) => {
         return res.status(400).json({ errors: errorMessages });     
        }else{
       const { name, email, address, city, country } = req.body;
+     
       const user = await User.create({
         name,
         email,

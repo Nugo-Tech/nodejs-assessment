@@ -2,24 +2,19 @@ const mongoose = require("mongoose")
 
 const userSchema = mongoose.Schema({
     name:{
-        type:String,
-        required:[true,"Please Enter the First Name"]
+        type:String
     },
     email:{
         type:String,
-        required:[true,"Please Enter the Email"]
     },
     address:{
-        type:String,
-        required:[true,"Please Enter the Email"]
+        type:String
     },
     city:{
-        type:String,
-        required:[true,"Please Enter the Email"]
+        type:String
     },
     country:{
-        type:String,
-        required:[true,"Please Enter the Email"]
+        type:String
     },
 },{
     timestamps:true

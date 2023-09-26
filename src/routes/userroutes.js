@@ -3,15 +3,9 @@ const router = express.Router()
 const usercontroller = require('../controllers/usercontroller')
 const asyncHandler = require('express-async-handler')
 const {check, validationResult} = require('express-validator')
+const { addUserValidation } = require('../middleware/datavalidation')
 
-router.post('/addUser',[
-                            check('name', 'Name is inavlid').notEmpty(),
-                            check('email', 'Email is inavlid').isEmail().notEmpty(),
-                            check('address', 'Address is inavlid').notEmpty(),
-                            check('city', 'city is inavlid').notEmpty(),
-                            check('country', 'country is inavlid').notEmpty(),
-                        ] ,
-                            usercontroller.addUser)
+router.post('/addUser',addUserValidation, usercontroller.addUser)
 
 router.get('/getUser/:id', usercontroller.getUser)
 router.put('/:id', usercontroller.updateUser)
