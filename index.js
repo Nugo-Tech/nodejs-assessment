@@ -15,3 +15,5 @@ app.use("/api/users",require('./routes/userroutes'))
 app.listen(port, () => {
   console.log(`Server is up on port ` + port)
 })
+
+module.exports= app

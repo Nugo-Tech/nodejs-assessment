@@ -1,6 +1,6 @@
 const {check, validationResult} = require('express-validator')
 
-const addUserValidation = [
+const userValidation = [
     check('name', 'Name is invalid').trim().notEmpty(),
     check('email', 'Email is invalid').trim().isEmail().notEmpty(),
     check('address', 'Address is invalid').trim().notEmpty(),
@@ -8,4 +8,4 @@ const addUserValidation = [
     check('country', 'Country is invalid').trim().notEmpty(),
   ];
 
-  module.exports= {addUserValidation}
+  module.exports= {userValidation}
