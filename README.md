@@ -1,7 +1,7 @@
 API End Points
 
 Run Application -> npm i -> nodemon index.js
-Run  Test -> npm i -> npm test
+!Run  Test -> npm i -> npm test
 
 Add User 
 Method : POST
