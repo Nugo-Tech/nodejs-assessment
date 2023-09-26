@@ -1,11 +1,17 @@
-const express = require('express')
+import express from "express";
+import dotenv from "dotenv";
 
-const app = express()
+import { testDbConnection } from "./config/index.js";
 
-const port = 5000
+dotenv.config();
+testDbConnection();
 
-app.use(express.json())
+const app = express();
+
+app.use(express.json());
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Server is up on port ` + port)
-})
+  console.log(`Server is up on port ` + port);
+});
