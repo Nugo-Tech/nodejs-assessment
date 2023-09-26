@@ -6,7 +6,7 @@ const {check, validationResult} = require('express-validator')
 const addUser =asyncHandler(async (req, res) => {
     try {
       const errors = validationResult(req);
-      console.log('Validation Errors:', errors.array()); // Add this line
+      console.log('Validation Errors:', errors.array());
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map(error => error.msg);
         return res.status(400).json({ errors: errorMessages });     
@@ -69,7 +69,7 @@ const getUser = asyncHandler(async (req, res) => {
       return res.status(200).json({ updatedUser, message: "User updated successfully" });
     } catch (error) {
       console.error(error);
-      next(error); // Pass the error to the error handling middleware
+      next(error); 
     }
   });
   

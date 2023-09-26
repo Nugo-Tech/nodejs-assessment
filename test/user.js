@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe("GET Users Api", () => {
     it("Should return a single user by ID", (done) => {
-      const userId = "UserID"; // Replace with a valid user ID from your database
+      const userId = "UserID"; 
 
       chai.request(index)
         .get(`/api/users/${userId}`)
