@@ -26,6 +26,27 @@ export async function saveUser(entity){
         await connection.release();
     }
 }
+export async function deleteUser(id) {
+    let connection = await datasource.getConnection();
+    try {
+        const exist =await connection.query("select * from user where id=? ",id);
+        if(!exist.length){
+            errorMessage.message ="ID: "+id+" not exist";
+            throw errorMessage;
+
+        }
+        await connection.query("START TRANSACTION");
+        await connection.query("delete from user where id=?",id);
+        await connection.query("COMMIT");
+    } catch (error) {
+        await connection.query("ROLLBACK");
+        console.log(error);
+        throw error;
+    } finally {
+        await connection.release();
+
+    }
+}
 export async function updateUser(entity) {
     let connection = await datasource.getConnection();
     try {
@@ -46,6 +67,24 @@ export async function updateUser(entity) {
 
     } catch (error) {
         await connection.query("ROLLBACK");
+        console.log(error);
+        throw error;
+    } finally {
+        await connection.release();
+
+    }
+}
+export async function readUser(id) {
+    let connection = await datasource.getConnection();
+    try {
+        let exist =await connection.query("select * from user where id=? ",id);
+        if(!exist.length){
+            errorMessage.message ="ID: "+id+" not exist";
+            throw errorMessage;
+        }
+        exist = JSON.parse(JSON.stringify(exist));
+        return exist;
+    } catch (error) {
         console.log(error);
         throw error;
     } finally {
