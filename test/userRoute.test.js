@@ -95,4 +95,66 @@ describe('User Routes', () => {
   });
 });
 
+// Test script for update user by id - http://localhost:5000/users/update/:Id
+describe('User Routes', () => {
+  describe('PUT /users/update/:Id', () => {
+    it('should update user data by Id', function (done) {
+      this.timeout(10000);
+     
+      const userIdToTest = 2;  // Assuming a user with Id 2 in your database for testing
+      const updatedUserData = {
+        Id: 2,
+        name: 'Updated user',
+        email: 'updateduser@example.com',
+        address: 'Updated Address',
+        city: 'Updated City',
+        country: 'Updated Country',
+      };
+
+      chai
+        .request(app) // Reference to Express app
+        .put(`/users/update/${userIdToTest}`)
+        .send(updatedUserData)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body.Success).to.equal('User data updated successfully');
+
+          // Optionally, also check if the user data has been updated in the database
+          Users.findOne({ Id: userIdToTest }).then((user) => {
+            expect(user).to.exist;
+            expect(user.name).to.equal(updatedUserData.name);
+            expect(user.email).to.equal(updatedUserData.email);
+            done();
+          });
+        });
+    });
+
+    it('should return 404 for updating a non-existent user', function (done) {
+      this.timeout(5000);
+     
+      const userIdToTest = 100; // Assuming there is no user with Id 999 in your database for testing
+
+      const updatedUserData = {
+        Id: 100,
+        name: 'Updated Name',
+        email: 'updated@example.com',
+        address: 'Updated Address',
+        city: 'Updated City',
+        country: 'Updated Country',
+      };
+
+      chai
+        .request(app)
+        .put(`/users/update/${userIdToTest}`)
+        .send(updatedUserData)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.equal('User not found');
+          done();
+        });
+    });
+  });
+});
 
