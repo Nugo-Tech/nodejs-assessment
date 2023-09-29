@@ -3,6 +3,21 @@ const Users = require('../models/userModel');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 
+// Define a centralized error handling middleware.
+const handleErrors = (err, req, res, next) => {
+  // Log the error to the console for debugging purposes.
+  console.error(err);
+
+  // Check if the error is a Mongoose validation error
+  if (err.name === 'ValidationError') {
+    // If it is a validation error, send a 400 Bad Request response with validation errors.
+    return res.status(400).json({ errors: err.errors });
+  }
+
+  // For all other types of errors, send a generic 500 Internal Server Error response.
+  return res.status(500).json({ error: 'Server error' });
+};
+
 // Validation middleware for creating a new user and updating data
 const validateCreateUser = [
   body('Id').notEmpty().isInt({ min: 1 }),
@@ -133,5 +148,7 @@ router.delete('/delete/:Id', async (req, res) => {
   }
 });
 
+// Centralized Error Handling Middleware
+router.use(handleErrors);
 
 module.exports = router;
