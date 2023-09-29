@@ -2,18 +2,19 @@ const express = require('express')
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const connectToMongo = require('./mongodb'); // Adjust the path as needed
+const userRouter = require("./routes/userRoutes");
+const bodyParser = require("body-parser");
 
 const app = express()
 const port = 5000
 
-// app.use(express.json())
+app.use(bodyParser.json());
+app.use("/api/users",userRouter)
 
 
 // Connect to MongoDB
 connectToMongo()
     .then(() => {
-        // Start your Express application logic here
-        // For example, define routes and start the server
         console.log('successfully connected to MongoDB');
     })
     .catch((error) => {
