@@ -158,3 +158,49 @@ describe('User Routes', () => {
   });
 });
 
+// Test script for delete user by id - http://localhost:5000/users/delete/:Id
+// Assuming have a user with Id 6 in your database for testing
+const userIdToTestDelete = 6;
+
+describe('User Routes', () => {
+  describe('DELETE /users/delete/:Id', () => {
+    it('should delete a user by Id', function (done) {
+      this.timeout(10000);
+
+      chai
+        .request(app)
+        .delete(`/users/delete/${userIdToTestDelete}`)
+        .end(async (err, res) => {
+          // Check if the user was deleted successfully
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal(
+            'User information deleted successfully'
+          );
+
+          // Verify that the user with the specified Id no longer exists in the database
+          const deletedUser = await Users.findOne({ Id: userIdToTestDelete });
+          expect(deletedUser).to.be.null;
+
+          done();
+        });
+    });
+
+    it('should return 404 for deleting a non-existent user', function (done) {
+      this.timeout(5000);
+   
+      const nonExistentUserIdDelete = 999; // Assuming there is no user with Id 999 in the database
+
+      chai
+        .request(app) // Reference to Express app
+        .delete(`/users/delete/${nonExistentUserIdDelete}`)
+        .end((err, res) => {
+          // Check that the response indicates the user was not found
+          expect(res).to.have.status(404);
+          expect(res.body).to.be.an('object');
+          expect(res.body.message).to.equal('User not found');
+          done();
+        });
+    });
+  });
+});
