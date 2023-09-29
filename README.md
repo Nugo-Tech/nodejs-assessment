@@ -29,16 +29,16 @@ This Node.js application provides a simple CRUD API for managing user records. I
 
 2. Create .env File
 
- * duplicate .env.example in backend folder and rename it to .env
+   * duplicate .env.example in backend folder and rename it to .env
    
 3. Setup MongoDB:
    
- * Local MongoDB
-    Install it from here
-    In .env file update MONGODB_URI=mongodb://localhost/amazona
- * OR Atlas Cloud MongoDB
-    Create database at https://cloud.mongodb.com
-    In .env file update MONGODB_URI=mongodb+srv://your-db-connection
+   * Local MongoDB
+      Install it from here
+      In .env file update MONGODB_URI=mongodb://localhost/amazona
+   * OR Atlas Cloud MongoDB
+      Create database at https://cloud.mongodb.com
+      In .env file update MONGODB_URI=mongodb+srv://your-db-connection
     
 6. Start the Node.js application:
 
@@ -61,12 +61,12 @@ This Node.js application provides a simple CRUD API for managing user records. I
  * Method: POST
  * Request Body:
  * JSON object with the following properties:
-    Id (integer): User ID (required)
-    name (string): User's name (required)
-    email (string): User's email (required, must be a valid email address)
-    address (string): User's address (required)
-    city (string): User's city (required)
-    country (string): User's country (required)    
+   * Id (integer): User ID (required)
+   * name (string): User's name (required)
+   * email (string): User's email (required, must be a valid email address)
+   * address (string): User's address (required)
+   * city (string): User's city (required)
+   * country (string): User's country (required)    
  * Sample Request:
 
    ```bash
@@ -80,8 +80,8 @@ This Node.js application provides a simple CRUD API for managing user records. I
    }
 
  * Response Format:
-    200 OK: User created successfully.
-    400 Bad Request: Invalid request body or missing fields.
+   * 200 OK: User created successfully.
+   * 400 Bad Request: Invalid request body or missing fields.
 
 ### Read User Details by ID
 
@@ -91,22 +91,22 @@ This Node.js application provides a simple CRUD API for managing user records. I
  * Id (integer): User ID (required)
  * Sample Request: /users/1  
  * Response Format:
-    200 OK: User found
-    404 Not Found: User not found
+   * 200 OK: User found
+   * 404 Not Found: User not found
 
 ### Update User Information
 
  * URL: /users/update/:Id
  * Method: PUT
  * Request Parameters:
-     Id (integer): User ID (required)
+   * Id (integer): User ID (required)
  *  Request Body:
-    JSON object with the following properties (any combination can be updated):
-       name (string): User's name
-       email (string): User's email (must be a valid email address)
-       address (string): User's address
-       city (string): User's city
-       country (string): User's country
+   * JSON object with the following properties (any combination can be updated):
+      * name (string): User's name
+      * email (string): User's email (must be a valid email address)
+      * address (string): User's address
+      * city (string): User's city
+      * country (string): User's country
  * Sample Request:
     ```bash
     {
@@ -115,25 +115,25 @@ This Node.js application provides a simple CRUD API for managing user records. I
     }
 
  * Response Format:
-    200 OK: User information updated successfully.
-    404 Not Found: User not found.
+   * 200 OK: User information updated successfully.
+   * 404 Not Found: User not found.
 
 ### Delete a User
  * URL: /users/delete/:Id
  * Method: DELETE
  * Request Parameters:
-    Id (integer): User ID (required)
+   * Id (integer): User ID (required)
  * Sample Request: /users/delete/1
  * Response Format: 
-    200 OK: User deleted successfully.
-    404 Not Found: User not found.
+   * 200 OK: User deleted successfully.
+   * 404 Not Found: User not found.
 
 ## Running Tests
 
-* To run tests for the API endpoints, you can use the following command:
+   * To run tests for the API endpoints, you can use the following command:
 
  ```bash
  $ npm test
 
 
-* This will execute the unit tests and provide feedback on the API's functionality.
+   * This will execute the unit tests and provide feedback on the API's functionality.
