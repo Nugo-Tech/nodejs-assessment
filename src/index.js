@@ -1,9 +1,11 @@
-// Import necessary packages and libraries
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables from .env file
+const userRoutes = require('./routes/userRoute');
 
-const userRoutes = require('./routes/userRoute')
+// Load environment variables from .env file
+require('dotenv').config(); 
+
+
 
 // Create an Express application
 const app = express();
@@ -37,7 +39,7 @@ connectToMongoDB();
 // Parse JSON request bodies
 app.use(express.json());
 
-
+// Mount the user routes at the '/users' endpoint
 app.use('/users', userRoutes);
 
 // Start the server and listen on the specified port

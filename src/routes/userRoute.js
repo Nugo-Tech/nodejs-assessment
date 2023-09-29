@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Define API routes here (create, read, update, delete)
 // Read all users
+/*
 router.get('/', async (req, res) => {
   try {
     const allUsers = await Users.find();
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
     });
   }
 });
+*/
 
 // Read user by Id
 router.get('/:Id', async (req, res) => {
