@@ -1,4 +1,5 @@
 const userService = require("../services/userService");
+const Joi = require('joi');
 
 exports.getAllUsers = async (req, res) => {
     try {

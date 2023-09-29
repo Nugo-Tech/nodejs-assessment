@@ -1,6 +1,4 @@
 const express = require('express')
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const connectToMongo = require('./mongodb'); // Adjust the path as needed
 const userRouter = require("./routes/userRoutes");
 const bodyParser = require("body-parser");
@@ -12,7 +10,7 @@ app.use(bodyParser.json());
 app.use("/api/users",userRouter)
 
 
-// Connect to MongoDB
+// calling the function to connect to mongodb database
 connectToMongo()
     .then(() => {
         console.log('successfully connected to MongoDB');
@@ -21,7 +19,7 @@ connectToMongo()
         console.error('Failed to connect to MongoDB:', error);
     });
 
-
+//listen to the port
 app.listen(port, () => {
   console.log(`Server is up on port ` + port)
 })
