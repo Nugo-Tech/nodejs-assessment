@@ -34,11 +34,11 @@ This Node.js application provides a simple CRUD API for managing user records. I
 3. Setup MongoDB:
    
    * Local MongoDB
-      Install it from here
-      In .env file update MONGODB_URI=mongodb://localhost/amazona
+     * Install it from here
+     * In .env file update MONGODB_URI=mongodb://localhost/amazona
    * OR Atlas Cloud MongoDB
-      Create database at https://cloud.mongodb.com
-      In .env file update MONGODB_URI=mongodb+srv://your-db-connection
+     * Create database at https://cloud.mongodb.com
+     * In .env file update MONGODB_URI=mongodb+srv://your-db-connection
     
 6. Start the Node.js application:
 
@@ -47,7 +47,7 @@ This Node.js application provides a simple CRUD API for managing user records. I
    $ npm install
    $ npm start
 
-* The application should now be running on 'http://localhost:5000'.
+* The application should now be running on http://localhost:5000.
 
 ## Usage
 
@@ -130,10 +130,10 @@ This Node.js application provides a simple CRUD API for managing user records. I
 
 ## Running Tests
 
-   * To run tests for the API endpoints, you can use the following command:
+   * To run tests for the API endpoints, you can use the following command. This will execute the unit tests and provide feedback on the API's functionality.:
 
  ```bash
  $ npm test
 
 
-   * This will execute the unit tests and provide feedback on the API's functionality.
+ 
