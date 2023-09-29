@@ -4,13 +4,16 @@
   "description": "Node.js technical assessment for Nugo backend developer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "author": "nugo",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.1"
   },
   "dependencies": {
