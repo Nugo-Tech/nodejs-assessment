@@ -79,11 +79,35 @@ router.put('/update/:Id', async (req, res) => {
 
     return res.status(200).json({
       Success: 'User data updated successfully',
-      updatedUser
+      updatedUser,
     });
   } catch (err) {
     return res.status(500).json({
       Failed: 'Server error',
+      error: err,
+    });
+  }
+});
+
+// Delete user data
+router.delete('/delete/:Id', async (req, res) => {
+  try {
+    // Assuming 'Users' is the Mongoose model for your users collection
+    const deletedUser = await Users.findOneAndDelete({ Id: req.params.Id });
+
+    if (!deletedUser) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
+
+    return res.status(200).json({
+      success: 'User information deleted successfully',
+      deletedUser
+    });
+  } catch (err) {
+    return res.status(500).json({
+      failed: 'Server error',
       error: err
     });
   }
