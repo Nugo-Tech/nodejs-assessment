@@ -26,3 +26,30 @@ export async function saveUser(entity){
         await connection.release();
     }
 }
+export async function updateUser(entity) {
+    let connection = await datasource.getConnection();
+    try {
+        const exist =await connection.query("select * from user where id=? ",entity.id);
+        const existByEmail=await connection.query("select * from user where email=?", entity.email);
+        if(!exist.length){
+            errorMessage.message ="ID: "+entity.id+" not exist";
+            throw  errorMessage;
+        }
+        if (existByEmail.length){
+            errorMessage.method="Email: "+entity.email+" already exist";
+            throw errorMessage;
+        }
+        await connection.query("START TRANSACTION");
+        await connection.query("update user set name=?,address=?,email=?,city=?,country=? where id =?",
+            [entity.name,entity.address,entity.email,entity.city,entity.country,entity.id]);
+        await connection.query("COMMIT");
+
+    } catch (error) {
+        await connection.query("ROLLBACK");
+        console.log(error);
+        throw error;
+    } finally {
+        await connection.release();
+
+    }
+}
