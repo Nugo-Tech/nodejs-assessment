@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
   try {
     const allUsers = await Users.find();
     return res.status(200).json({
-      allUsers
+      allUsers,
     });
   } catch (err) {
     return res.status(400).json({
       Failed: 'Server error',
-      error: err
+      error: err,
     });
   }
 });
@@ -30,12 +30,12 @@ router.get('/:Id', async (req, res) => {
     }
 
     return res.status(200).json({
-      User
+      User,
     });
   } catch (err) {
     return res.status(400).json({
       Failed: 'Server error',
-      error: err
+      error: err,
     });
   }
 });
@@ -45,15 +45,46 @@ router.post('/insert', async (req, res) => {
   try {
     const newUser = new Users(req.body);
     const savedUser = await newUser.save();
-    
+
     return res.status(200).json({
       Success: 'New user saved successfully',
-      savedUser
+      savedUser,
     });
   } catch (error) {
     return res.status(400).json({
       Failed: 'Server error',
       error: err,
+    });
+  }
+});
+
+// Update user data
+router.put('/update/:Id', async (req, res) => {
+  try {
+    // Assuming 'Users' is the Mongoose model for your users collection
+    const updatedUser = await Users.findOneAndUpdate(
+      { Id: req.params.Id }, // Specify the query conditions here
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        message: 'User not found',
+      });
+    }
+
+    return res.status(200).json({
+      Success: 'User data updated successfully',
+      updatedUser
+    });
+  } catch (err) {
+    return res.status(500).json({
+      Failed: 'Server error',
+      error: err
     });
   }
 });
