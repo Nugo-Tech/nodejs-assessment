@@ -8,7 +8,7 @@
 ## API Routes
 
 ### Get User by Id Method: GET
-Route - localhost:5000/api/users
+Route - localhost:5000/api/users </br>
 Request Format:
 {
 	"data": [
