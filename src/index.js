@@ -1,5 +1,5 @@
 const express = require('express')
-const connectToMongo = require('./mongodb'); // Adjust the path as needed
+const connectToMongo = require('./dbconfig/mongodb'); // Adjust the path as needed
 const userRouter = require("./routes/userRoutes");
 const bodyParser = require("body-parser");
 

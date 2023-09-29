@@ -10,7 +10,7 @@ const Joi = require("joi");
 const {validateRequest} = require("../middleware/userValidation");
 const router = express.Router();
 
-//create the joi schema for validation user inputs
+//create the joi schema for validating user inputs
 const schema = Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
