@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
   try {
     const allUsers = await Users.find();
     return res.status(200).json({
-      allUsers,
+      allUsers
     });
   } catch (err) {
     return res.status(400).json({
       Failed: 'Server error',
-      error: err,
+      error: err
     });
   }
 });
@@ -30,9 +30,27 @@ router.get('/:Id', async (req, res) => {
     }
 
     return res.status(200).json({
-      User,
+      User
     });
   } catch (err) {
+    return res.status(400).json({
+      Failed: 'Server error',
+      error: err
+    });
+  }
+});
+
+// Insert user data
+router.post('/insert', async (req, res) => {
+  try {
+    const newUser = new Users(req.body);
+    const savedUser = await newUser.save();
+    
+    return res.status(200).json({
+      Success: 'New user saved successfully',
+      savedUser
+    });
+  } catch (error) {
     return res.status(400).json({
       Failed: 'Server error',
       error: err,
