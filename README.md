@@ -24,28 +24,34 @@ This Node.js application provides a simple CRUD API for managing user records. I
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/tkdeshan/nodejs-assessment.git
+   $ git clone https://github.com/tkdeshan/nodejs-assessment.git
+   $ cd nodejs-assessment
 
-2. Change into the project directory:
+2. Create .env File
 
-   ```bash
-   cd nodejs-assessment
+ * duplicate .env.example in backend folder and rename it to .env
    
-4. Install the required dependencies:
+3. Setup MongoDB:
    
-    ```bash
-   npm install
+ * Local MongoDB
+    Install it from here
+    In .env file update MONGODB_URI=mongodb://localhost/amazona
+ * OR Atlas Cloud MongoDB
+    Create database at https://cloud.mongodb.com
+    In .env file update MONGODB_URI=mongodb+srv://your-db-connection
     
 6. Start the Node.js application:
 
     ```bash
-   npm start
+   $ cd backend
+   $ npm install
+   $ npm start
 
-The application should now be running on 'http://localhost:5000'.
+* The application should now be running on 'http://localhost:5000'.
 
 ## Usage
 
-You can use tools like Postman to interact with the API endpoints. Below are the details of the available endpoints:
+* You can use tools like Postman to interact with the API endpoints. Below are the details of the available endpoints:
 
 ## API Endpoints
 
@@ -96,11 +102,11 @@ You can use tools like Postman to interact with the API endpoints. Below are the
      Id (integer): User ID (required)
  *  Request Body:
     JSON object with the following properties (any combination can be updated):
-     * name (string): User's name
-     * email (string): User's email (must be a valid email address)
-     * address (string): User's address
-     * city (string): User's city
-     * country (string): User's country
+       name (string): User's name
+       email (string): User's email (must be a valid email address)
+       address (string): User's address
+       city (string): User's city
+       country (string): User's country
  * Sample Request:
     ```bash
     {
@@ -124,9 +130,10 @@ You can use tools like Postman to interact with the API endpoints. Below are the
 
 ## Running Tests
 
-To run tests for the API endpoints, you can use the following command:
+* To run tests for the API endpoints, you can use the following command:
 
  ```bash
-npm test
+ $ npm test
 
-This will execute the unit tests and provide feedback on the API's functionality.
+
+* This will execute the unit tests and provide feedback on the API's functionality.
