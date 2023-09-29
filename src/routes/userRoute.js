@@ -1,6 +1,24 @@
 const express = require('express');
 const Users = require('../models/userModel');
 const router = express.Router();
+const { body, validationResult } = require('express-validator');
+
+// Validation middleware for creating a new user and updating data
+const validateCreateUser = [
+  body('Id').notEmpty().isInt({ min: 1 }),
+  body('name').notEmpty().trim().isString(),
+  body('email').isEmail().normalizeEmail(),
+  body('address').notEmpty().trim().isString(),
+  body('city').notEmpty().trim().isString(),
+  body('country').notEmpty().trim().isString(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+];
 
 // Define API routes here (create, read, update, delete)
 // Read all users
@@ -43,7 +61,7 @@ router.get('/:Id', async (req, res) => {
 });
 
 // Insert user data
-router.post('/insert', async (req, res) => {
+router.post('/insert', validateCreateUser, async (req, res) => {
   try {
     const newUser = new Users(req.body);
     const savedUser = await newUser.save();
@@ -61,7 +79,7 @@ router.post('/insert', async (req, res) => {
 });
 
 // Update user data
-router.put('/update/:Id', async (req, res) => {
+router.put('/update/:Id', validateCreateUser, async (req, res) => {
   try {
     // Assuming 'Users' is the Mongoose model for your users collection
     const updatedUser = await Users.findOneAndUpdate(
@@ -105,14 +123,15 @@ router.delete('/delete/:Id', async (req, res) => {
 
     return res.status(200).json({
       success: 'User information deleted successfully',
-      deletedUser
+      deletedUser,
     });
   } catch (err) {
     return res.status(500).json({
       failed: 'Server error',
-      error: err
+      error: err,
     });
   }
 });
+
 
 module.exports = router;
