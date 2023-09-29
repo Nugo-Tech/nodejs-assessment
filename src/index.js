@@ -1,4 +1,6 @@
-const express = require('express')
+import {router} from './api/httpUserController.js'
+import express from 'express';
+// const express = require('express')
 
 const app = express()
 
