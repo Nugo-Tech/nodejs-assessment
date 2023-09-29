@@ -23,8 +23,9 @@ const schema = Joi.object().keys({
 router.get('/',getAllUsers);
 router.get('/:id',getUserById)
 router.post('/',validateRequest(schema),addUser)
+router.delete('/:id',deleteUser)
 router.put('/:id',validateRequest(schema),updateUser)
-router.delete(':/id',deleteUser)
+
 
 
 
