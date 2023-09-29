@@ -44,5 +44,55 @@ describe('User Routes', () => {
   });
 });
 
+// Test script for insert data - http://localhost:5000/users/insert
+describe('User Routes', () => {
+  describe('POST /users/insert', () => {
+    it('should insert a new user and return 200 OK', function (done) {
+      this.timeout(5000);
+
+      // Define a new user data object for testing
+      const newUser = {
+        Id: 7, // A unique ID not already in the database
+        name: 'Test User',
+        email: 'test@example.com',
+        address: '123 Test St',
+        city: 'Test City',
+        country: 'Test Country',
+      };
+
+      chai
+        .request(app) // Reference to Express app
+        .post('/users/insert')
+        .send(newUser)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body.Success).to.equal('New user saved successfully');
+          done();
+        });
+    });
+
+    it('should return 400 Bad Request for an invalid user data', function (done) {
+      this.timeout(5000);
+
+      // Define an invalid user data object for testing
+      const invalidUser = {
+        name: 'Invalid User',
+        // Missing other required fields like email, address, etc.
+      };
+
+      chai
+        .request(app)
+        .post('/users/insert')
+        .send(invalidUser)
+        .end((err, res) => {
+          expect(res).to.have.status(400);
+          expect(res.body).to.be.an('object');
+          expect(res.body.errors).to.be.an('array'); // Assuming validation errors are returned as an array
+          done();
+        });
+    });
+  });
+});
 
 
