@@ -1,11 +1,25 @@
-const express = require('express')
+import express from "express";
+import dotenv from "dotenv/config";
 
-const app = express()
+import userRoutes from "./routes/userRoutes.js";
+import { sequelize } from "./config/db.js";
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
-const port = 5000
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(express.json())
+// Body parsing middleware
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server is up on port ` + port)
-})
+// API routes
+app.use("/users", userRoutes);
+
+// Error middleware
+app.use(errorMiddleware);
+
+// Sync the database and start the server
+sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+});

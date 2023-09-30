@@ -1,63 +1,157 @@
-# Node.js CRUD Application Assessment
+# SETUP AND RUN THE PROJECT
+This is the documentation for the RESTful API that allows you to manage user data. It provides endpoints for creating, reading, updating, and deleting user records.
 
-Welcome to the Node.js CRUD Application Assessment. This assessment is designed to evaluate your skills in creating a basic CRUD (Create, Read, Update, Delete) application using Node.js, Express.js, and a database of your choice. Follow the steps below to complete the assessment, and good luck!
+## Before you begin, ensure you have met the following requirements:
+Node.js (v18 or higher) and npm installed on your machine. (I'm using v18).
 
-## Objective
+MySQL database server installed and running.
 
-Your task is to build a simple CRUD API for managing user records. This includes creating users, updating user information, reading user details, and deleting users from the system.
+Postman or any API testing tool for testing the endpoints.
 
-## Steps to Complete the Assessment
+## Getting Started
+To set up and run the API, follow these steps:
 
-1. **Fork this Repository:** Start by forking this GitHub repository to your own account. You will work on your assessment within your forked repository.
+1. Clone this repository to your local machine
 
-2. **Setup the Project:**
-   - Clone your forked repository to your local machine.
-   - Install the necessary dependencies.
+   HTTP
+   ```
+   git clone https://github.com/minshaf998/nodejs-assessment.git
+   ```
+   SSH
+   ```
+   git@github.com:minshaf998/nodejs-assessment.git
+   ```
+   
+3. Navigate to the project directory
 
-3. **Database Setup:**
-   - Choose a database for storing user records (e.g., Firebase, MongoDB, MySQL, PostgreSQL, or whatever you prefer!). Try to include instructions on how to set up and configure the database.
+   ```
+   cd nodejs-assessment
+   ```
 
-4. **API Development:**
-   - Create RESTful API endpoints to perform the following operations:
-     - Create a new user with the required fields - id, name, email, address, city, country.
-     - Read user details by user ID.
-     - Update user information by user ID.
-     - Delete a user by user ID.
+4. Install the dependencies
+   ```
+   npm install
+   ```
 
-5. **Validation and Error Handling:**
-   - Implement input validation to ensure data integrity.
-   - Handle errors gracefully and provide informative error messages in the API responses.
+5. Create .env file in your root directory and add proper changes in below lines
+   ```
+   DB_NAME=assessment
+   DB_USER=root
+   DB_PASSWORD=password
+   DB_HOST=localhost
+   DB_DIALECT=mysql
 
-6. **Testing:**
-   - Write unit tests for your API endpoints. Consider using a testing framework like Mocha.
+   PORT=3000
+   ```
+6. Make sure you created a database called assessment in your local mysql database.
+7. In terminal in your root folder start the server
+   ```
+   npm start
+   ```
 
-7. **Documentation:**
-   - Document your API endpoints, including the request and response formats, in this README.md file.
-   - Include instructions on how to run the application and tests.
+   If you can able to see terminal output as below you're good to go
+   ```[nodemon] restarting due to changes...
+   [nodemon] starting `node src/index.js`
+   Executing (default): SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'Users' AND TABLE_SCHEMA = 'assessment'
+   Executing (default): SELECT 1+1 AS result
+   Database connection has been established successfully.
+   Executing (default): SHOW INDEX FROM `Users`
+   Server is running on port 3002```
+   
 
-8. **Submission:**
-   - Commit your code to your forked repository.
-   - Push the changes to your GitHub repository.
-   - Create a Pull Request from your forked repository to this main repository.
+# API Documentation
+## 1. Create a New User
+### Request:
+Method: POST
 
-## Evaluation Criteria
+URL: 'http://localhost:3000/users'
 
-Your assessment will be evaluated based on the following criteria:
-- Correctness of CRUD operations.
-- Proper API design and RESTful practices.
-- Use of atomic commits and meaningful commit messages.
-- Quality of code and unit tests.
-- Code readability and organization, including proper use of comments.
+Request Body (JSON):
+```
+{
+  "name": "inshaf",
+  "email": "inshaf@yopmail.com",
+  "address": "123 Main St",
+  "city": "Sample City",
+  "country": "Sri Lanka"
+}
+```
+### Response:
+Status Code: 201 Created
 
-## Bonus Points (Optional)
+Response Body (JSON):
+```
+{
+  "id": 1,
+  "name": "inshaf",
+  "email": "inshaf@yopmail.com",
+  "address": "123 Main St",
+  "city": "Sample City",
+  "country": "Sri Lanka"
+}
+```
 
-Consider these optional enhancements to earn bonus points:
-- Deploy the application to a live server
-- Use of a logging framework
-- Use of Docker
+## 2. Read User Details by User ID
+### Request:
+Method: GET
 
-## Questions and Assistance
+URL: 'http://localhost:3000/users/{userId}'
 
-If you have any questions or need assistance at any stage of this assessment, please feel free to reach out to info@nugo.lk.
+Replace {userId} with the actual user ID you want to retrieve.
 
-Best of luck with your assessment!
+### Response:
+Status Code: 200 OK
+
+Response Body (JSON):
+```
+{
+  "id": 1,
+  "name": "inshaf",
+  "email": "inshaf@yopmail.com",
+  "address": "123 Main St",
+  "city": "Sample City",
+  "country": "Sri Lanka"
+}
+```
+## 3. Update User Information by User ID
+### Request:
+Method: PUT
+
+URL: 'http://localhost:3000/users/{userId}'
+
+Replace {userId} with the actual user ID you want to update.
+
+Request Body (JSON):
+```
+{
+  "name": "Updated Name",
+  "email": "updatedemail@example.com"
+}
+```
+
+### Response:
+Status Code: 200 OK
+
+Response Body (JSON):
+```
+{
+  "id": 1,
+  "name": "Updated Name",
+  "email": "updatedemail@example.com",
+  "address": "123 Main St",
+  "city": "Sample City",
+  "country": "Sample Country"
+}
+
+```
+## 4. Delete a User by User ID
+
+### Request:
+Method: DELETE
+
+URL: 'http://localhost:3000/users/{userId}'
+
+Replace {userId} with the actual user ID you want to delete.
+
+### Response:
+Status Code: 204 No Content
