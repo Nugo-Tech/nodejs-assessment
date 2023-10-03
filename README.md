@@ -26,24 +26,23 @@ This Node.js application provides a simple CRUD API for managing user records. I
    ```bash
    $ git clone https://github.com/tkdeshan/nodejs-assessment.git
    $ cd nodejs-assessment
-
-2. Create .env File
-
-   * duplicate .env.example in backend folder and rename it to .env
    
-3. Setup MongoDB:
+2. Setup MongoDB:
    
    * Local MongoDB
      * Install it from here
-     * In .env file update MONGODB_URI=mongodb://localhost/amazona
+     * In .env file update MONGODB_URI=mongodb://localhost/your-db-connection
    * OR Atlas Cloud MongoDB
      * Create database at https://cloud.mongodb.com
      * In .env file update MONGODB_URI=mongodb+srv://your-db-connection
+
+3. Create .env File
+
+   * duplicate example.env and rename it to .env. Replace MONGODB_URI with your credentials.
     
-6. Start the Node.js application:
+4. Start the Node.js application:
 
     ```bash
-   $ cd backend
    $ npm install
    $ npm start
 
@@ -134,6 +133,3 @@ This Node.js application provides a simple CRUD API for managing user records. I
 
  ```bash
  $ npm test
-
-
- 
