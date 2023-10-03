@@ -29,18 +29,14 @@ This Node.js application provides a simple CRUD API for managing user records. I
    
 2. Setup MongoDB:
    
-   * Local MongoDB
-     * Install it from here
-     * In .env file update MONGODB_URI=mongodb://localhost/your-db-connection
-   * OR Atlas Cloud MongoDB
-     * Create database at https://cloud.mongodb.com
-     * In .env file update MONGODB_URI=mongodb+srv://your-db-connection
+     * Create database MongoDB Atlas at https://cloud.mongodb.com
 
-3. Create .env File
+4. Create .env File
 
-   * duplicate example.env and rename it to .env. Replace MONGODB_URI with your credentials.
+   * duplicate example.env and rename it to .env.
+   * Replace MONGODB_URI with your credentials.
     
-4. Start the Node.js application:
+5. Start the Node.js application:
 
     ```bash
    $ npm install
