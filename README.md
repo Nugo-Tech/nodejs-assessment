@@ -1,63 +1,103 @@
-# Node.js CRUD Application Assessment
+<h2>Node.js CRUD Application</h2>
+<br/>
+##follow this instructions on how to run the application.
 
-Welcome to the Node.js CRUD Application Assessment. This assessment is designed to evaluate your skills in creating a basic CRUD (Create, Read, Update, Delete) application using Node.js, Express.js, and a database of your choice. Follow the steps below to complete the assessment, and good luck!
+- make sure you have to install below application.
+	sudo apt install nodejs
+	sudo apt install mysql-server
+	
+- colone the repository
+	git clone https://github.comdilanasiri/nodejs-assessment.git
+	
+- npm install
 
-## Objective
+- npm start
 
-Your task is to build a simple CRUD API for managing user records. This includes creating users, updating user information, reading user details, and deleting users from the system.
+##To save a user details make post request->
 
-## Steps to Complete the Assessment
+- Add User Method : POST
+- url		  : http://localhost:5000/api/v1/users
 
-1. **Fork this Repository:** Start by forking this GitHub repository to your own account. You will work on your assessment within your forked repository.
+Request Format:
 
-2. **Setup the Project:**
-   - Clone your forked repository to your local machine.
-   - Install the necessary dependencies.
+  request body->json object 
+     
+	{
+	  "id":"enter id",
+	  "name":"enter name here",
+	  "email":"enter email here",
+	  "address':"enter address here",
+	  "city":"enter city here",
+	  "country":"enter country here"
+	}
 
-3. **Database Setup:**
-   - Choose a database for storing user records (e.g., Firebase, MongoDB, MySQL, PostgreSQL, or whatever you prefer!). Try to include instructions on how to set up and configure the database.
+Response formats:
 
-4. **API Development:**
-   - Create RESTful API endpoints to perform the following operations:
-     - Create a new user with the required fields - id, name, email, address, city, country.
-     - Read user details by user ID.
-     - Update user information by user ID.
-     - Delete a user by user ID.
+json
 
-5. **Validation and Error Handling:**
-   - Implement input validation to ensure data integrity.
-   - Handle errors gracefully and provide informative error messages in the API responses.
+	{
+	 "user": 
+	 {
+	  "id":1,
+	  "name":"asiri",
+	  "email":"asiri@gmail.com",
+	  "address':"Niyangama",
+	  "city":"Godakawela",
+	  "country":"Sri Lanka"
+	 },
+	 "message": "User created"
+	}
 
-6. **Testing:**
-   - Write unit tests for your API endpoints. Consider using a testing framework like Mocha.
+##To retrive user using id ->
 
-7. **Documentation:**
-   - Document your API endpoints, including the request and response formats, in this README.md file.
-   - Include instructions on how to run the application and tests.
+- Get Single User Method : GET
+- url			 : http://localhost:5000/api/v1/users/id
 
-8. **Submission:**
-   - Commit your code to your forked repository.
-   - Push the changes to your GitHub repository.
-   - Create a Pull Request from your forked repository to this main repository.
 
-## Evaluation Criteria
+##To edit user details make patch request-> 
 
-Your assessment will be evaluated based on the following criteria:
-- Correctness of CRUD operations.
-- Proper API design and RESTful practices.
-- Use of atomic commits and meaningful commit messages.
-- Quality of code and unit tests.
-- Code readability and organization, including proper use of comments.
+- Update Single User Method : PUT
+- url			    : http://localhost:5000/api/v1/users/id
 
-## Bonus Points (Optional)
+Request Format:
 
-Consider these optional enhancements to earn bonus points:
-- Deploy the application to a live server
-- Use of a logging framework
-- Use of Docker
+json
 
-## Questions and Assistance
+  request body->json object 
+  
+	{
+	 "id":"enter id",
+	 "name":"enter name here",
+	 "email":"enter email here",
+	 "address':"enter address here",
+	 "city":"enter city here",
+	 "country":"enter country here"
+	}
+Response formats:
 
-If you have any questions or need assistance at any stage of this assessment, please feel free to reach out to info@nugo.lk.
+json
 
-Best of luck with your assessment!
+	{
+	 "user": 
+	 {
+	  "id":1,
+	  "name":"asiri",
+	  "email":"asiri@gmail.com",
+	  "address':"Niyangama",
+	  "city":"Godakawela",
+	  "country":"Sri Lanka"
+	 },
+	 "message": "User Updated"
+	}
+
+##To delete user using id ->
+
+- Delete User Method : DELETE
+- url		     :   http://localhost:5000/api/v1/users/id
+
+Response Format:
+
+json
+{
+  "message": "User deleted"
+}
